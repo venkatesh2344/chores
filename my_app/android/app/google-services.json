@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1076954722289",
+    "project_id": "chores-4555f",
+    "storage_bucket": "chores-4555f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1076954722289:android:3e3bb78e93ba1379dede50",
+        "android_client_info": {
+          "package_name": "com.example.my_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUto6RqoRyynHis5EpPP0FXLvpzJzLWZE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,13 +1,16 @@
-// import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_app/AuthScreen.dart';
+import 'package:my_app/auth.dart';
 import 'package:my_app/homecontroller.dart';
 import 'Tablescreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  Get.put(AuthController()); // Initialize your GetX controller here
+
   runApp(const MyApp());
 }
 
@@ -43,7 +46,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: MyHomePage(),
+      home: AuthScreen(),
       routes: {
         '/table': (context) => TablePage(),
       },
