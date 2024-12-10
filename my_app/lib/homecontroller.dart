@@ -9,6 +9,7 @@ class HomeController extends GetxController {
   Rx<DateTime?> selectedDate = Rx<DateTime?>(null);
   late List<String> works = [
     "Venkatesh",
+    "mohan",
     "Vamsi",
     "Chiranjevi",
     "Ashok",
@@ -40,18 +41,19 @@ class HomeController extends GetxController {
   getwork(int weeknumber) {
     works = [
       "Venkatesh",
+      "mohan",
       "Vamsi",
       "Chiranjevi",
       "Ashok",
       "Venkat",
     ];
-    int wd = weeknumber - 35;
-    int a = wd % 5;
+    int wd = weeknumber - 50;
+    int a = wd % 6;
     int s = 0;
     print(a);
     while (s != a) {
-      String t = works[4];
-      for (int i = 4; i > 0; i--) {
+      String t = works[5];
+      for (int i = 5; i > 0; i--) {
         works[i] = works[i - 1];
       }
       works[0] = t;

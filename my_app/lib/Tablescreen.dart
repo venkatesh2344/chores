@@ -11,6 +11,7 @@ class TablePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<String> names = [
+      "balcony",
       "Dish Wash",
       "Sweeping",
       "Rice",
