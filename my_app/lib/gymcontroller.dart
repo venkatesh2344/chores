@@ -4,33 +4,24 @@ import 'package:flutter/material.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:my_app/Tablescreen.dart';
 import 'package:my_app/auth.dart';
+import 'package:my_app/gymtable.dart';
 import 'package:my_app/mypage.dart';
 
-class HomeController extends GetxController {
+class Gymcontroller extends GetxController {
   // Store selected date
   Rx<DateTime?> selectedDate = Rx<DateTime?>(DateTime.now());
   final AuthController authController = Get.find();
-  late List<String> names = [
-    "balcony",
-    "Dish Wash",
-    "Sweeping",
-    "Rice",
-    "Curries",
-    "Free"
-  ];
-  late List<String> works = [
+  late List<String> gymnames = [
     "Venkatesh",
-    "mohan",
     "Vamsi",
-    "Chiranjevi",
     "Ashok",
-    "Venkat",
   ];
+  late List<String> gymworks = ["Dish Wash", "Protien", "Free"];
   // TextField controller
   TextEditingController textFieldController = TextEditingController();
 
   // Method to pick a date
-  Future<void> selectDate(BuildContext context) async {
+  Future<void> selectDategym(BuildContext context) async {
     final DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
@@ -43,31 +34,28 @@ class HomeController extends GetxController {
   }
 
   // Method to calculate the week number
-  int getWeekNumber(DateTime date) {
+  int getWeekNumbergym(DateTime date) {
     DateTime firstDayOfYear = DateTime(date.year, 1, 1);
     int daysSinceStartOfYear = date.difference(firstDayOfYear).inDays;
     return ((daysSinceStartOfYear + firstDayOfYear.weekday) / 7).ceil();
   }
 
   getwork(int weeknumber) {
-    works = [
-      "venkatesh",
-      "mohan",
-      "vamsi",
-      "chiranjevi",
+    gymnames = [
+      "Venkatesh",
+      "Vamsi",
       "Ashok",
-      "venkat",
     ];
     int wd = weeknumber - 50;
-    int a = wd % 6;
+    int a = wd % 3;
     int s = 0;
     print(a);
     while (s != a) {
-      String t = works[5];
-      for (int i = 5; i > 0; i--) {
-        works[i] = works[i - 1];
+      String t = gymnames[2];
+      for (int i = 2; i > 0; i--) {
+        gymnames[i] = gymnames[i - 1];
       }
-      works[0] = t;
+      gymnames[0] = t;
       s = s + 1;
     }
   }
@@ -84,13 +72,13 @@ class HomeController extends GetxController {
       String formattedDate =
           "${selectedDate.value!.day}/${selectedDate.value!.month}/${selectedDate.value!.year}";
       String textFieldData = textFieldController.text;
-      getwork(getWeekNumber(selectedDate.value!));
+      getwork(getWeekNumbergym(selectedDate.value!));
       print("Date: $formattedDate");
-      print(getWeekNumber(selectedDate.value!));
+      print(getWeekNumbergym(selectedDate.value!));
       if (flag == "1") {
-        Get.to(MyPage());
+        Get.to(GymTable());
       } else {
-        Get.to(TablePage());
+        Get.to(GymTable());
       }
 
       ScaffoldMessenger.of(context).showSnackBar(
@@ -108,7 +96,7 @@ class HomeController extends GetxController {
   }
 
   getindex() {
-    int index = works.indexOf(authController.name);
-    authController.mywork = names[index];
+    int index = gymnames.indexOf(authController.name);
+    authController.mywork = gymworks[index];
   }
 }

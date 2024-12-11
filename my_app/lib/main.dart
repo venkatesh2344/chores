@@ -54,45 +54,70 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  final HomeController homeController = Get.put(HomeController());
+// class MyHomePage extends StatelessWidget {
+//   final HomeController homeController = Get.put(HomeController());
+//   final AuthController authController = Get.find();
+//   MyHomePage({super.key});
 
-  MyHomePage({super.key});
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         automaticallyImplyLeading: false,
+//         title: const Text('Date Picker and Text Field'),
+//       ),
+//       body: Padding(
+//         padding: const EdgeInsets.all(8.0),
+//         child: Column(
+//           children: [
+//             // Welcome Text aligned to the top left
+//             Align(
+//               alignment: Alignment.topCenter,
+//               child: Text(
+//                 "Welcome ${authController.email.split('@')[0]}",
+//                 style: TextStyle(
+//                   fontSize: 28,
+//                   fontWeight: FontWeight.bold,
+//                   color: Colors.blueAccent,
+//                 ),
+//               ),
+//             ),
+//             const SizedBox(height: 10),
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Date Picker and Text Field'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Obx(() {
-              final selectedDate = homeController.selectedDate.value;
-              return TextField(
-                readOnly: true,
-                decoration: InputDecoration(
-                  labelText: 'Select Date',
-                  hintText: selectedDate == null
-                      ? 'No date selected'
-                      : "${selectedDate.day}/${selectedDate.month}/${selectedDate.year}",
-                  suffixIcon:
-                      const Icon(Icons.calendar_today, color: Colors.blue),
-                ),
-                onTap: () => homeController.selectDate(context),
-              );
-            }),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () => homeController.submitData(context),
-              child: const Text('Submit'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+//             // Expanded widget centers the remaining content
+//             Expanded(
+//               child: Center(
+//                 child: Column(
+//                   mainAxisAlignment:
+//                       MainAxisAlignment.center, // Vertically center
+//                   children: [
+//                     Obx(() {
+//                       final selectedDate = homeController.selectedDate.value;
+//                       return TextField(
+//                         readOnly: true,
+//                         decoration: InputDecoration(
+//                           labelText: 'Select Date',
+//                           hintText: selectedDate == null
+//                               ? 'No date selected'
+//                               : "${selectedDate.day}/${selectedDate.month}/${selectedDate.year}",
+//                           suffixIcon: const Icon(Icons.calendar_today,
+//                               color: Colors.blue),
+//                         ),
+//                         onTap: () => homeController.selectDate(context),
+//                       );
+//                     }),
+//                     const SizedBox(height: 20),
+//                     ElevatedButton(
+//                       onPressed: () => homeController.submitData(context),
+//                       child: const Text('Submit'),
+//                     ),
+//                   ],
+//                 ),
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }

@@ -1,24 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_app/gymcontroller.dart';
 import 'package:my_app/homecontroller.dart';
 
-class TablePage extends StatelessWidget {
+class GymTable extends StatelessWidget {
   @override
-  final HomeController homeController = Get.put(HomeController());
+  Gymcontroller homeController = Get.put(Gymcontroller());
 
-  TablePage({super.key});
+  GymTable({super.key});
 
   @override
   Widget build(BuildContext context) {
-    homeController.names = [
-      "balcony",
-      "Dish Wash",
-      "Sweeping",
-      "Rice",
-      "Curries",
-      "Free"
-    ];
-    final List<String> works = homeController.works;
+    homeController.gymworks = ["Dish Wash", "Protien", "Free"];
+    final List<String> works = homeController.gymnames;
 
     return Scaffold(
       appBar: AppBar(
@@ -66,7 +60,7 @@ class TablePage extends StatelessWidget {
               ],
             ),
             // Data rows with alternating colors
-            for (int i = 0; i < homeController.names.length; i++)
+            for (int i = 0; i < homeController.gymworks.length; i++)
               TableRow(
                 decoration: BoxDecoration(
                   color: i % 2 == 0 ? Colors.grey[200] : Colors.white,
@@ -85,7 +79,7 @@ class TablePage extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: Text(
-                        i < works.length ? homeController.names[i] : '',
+                        i < works.length ? homeController.gymworks[i] : '',
                         textAlign: TextAlign.center,
                       ),
                     ),

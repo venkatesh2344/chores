@@ -1,15 +1,20 @@
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:my_app/MyHomePage.dart';
 import 'package:my_app/main.dart';
 
 class AuthController extends GetxController {
   var isAuthenticated = false.obs; // This will hold authentication state
+  dynamic email;
+  String name = "";
+  String mywork = "";
 
   // Initialize Firebase Auth instance
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   // Sign Up Method
-  Future<void> signUp(String email, String password) async {
+  Future<bool> signUp(String email, String password) async {
+    bool status = true;
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
@@ -18,7 +23,9 @@ class AuthController extends GetxController {
       isAuthenticated.value = true; // Update the authentication state
     } catch (e) {
       Get.snackbar('Error', e.toString(), snackPosition: SnackPosition.BOTTOM);
+      status = false;
     }
+    return status;
   }
 
   // Sign In Method
@@ -29,7 +36,7 @@ class AuthController extends GetxController {
         password: password,
       );
       isAuthenticated.value = true;
-      Get.to(MyHomePage());
+      Get.offAll(() => MyHomePage());
       print("working");
     } catch (e) {
       Get.snackbar('Error', e.toString(), snackPosition: SnackPosition.BOTTOM);
