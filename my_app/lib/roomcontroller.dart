@@ -7,18 +7,19 @@ import 'package:my_app/auth.dart';
 import 'package:my_app/gymtable.dart';
 import 'package:my_app/mygympage.dart';
 import 'package:my_app/mypage.dart';
+import 'package:my_app/roomtable.dart';
 
-class Gymcontroller extends GetxController {
+class Roomcontroller extends GetxController {
   // Store selected date
   Rx<DateTime?> selectedDate = Rx<DateTime?>(DateTime.now());
   final AuthController authController = Get.find();
   late String mygymwork = "";
-  late List<String> gymnames = [
+  late List<String> roomnames = [
     "Venkatesh",
-    "Vamsi",
-    "Ashok",
+    "venkat",
+    "Chiranjivi",
   ];
-  late List<String> gymworks = ["Dish Wash", "Protien", "Free"];
+  late List<String> roomworks = ["Washroom", "cleaning", "Free"];
   // TextField controller
   TextEditingController textFieldController = TextEditingController();
 
@@ -43,21 +44,21 @@ class Gymcontroller extends GetxController {
   }
 
   getwork(int weeknumber) {
-    gymnames = [
+    roomnames = [
       "venkatesh",
-      "vamsi",
-      "Ashok",
+      "venkat",
+      "Chiranjivi",
     ];
     int wd = weeknumber - 50;
     int a = wd % 3;
     int s = 0;
     print(a);
     while (s != a) {
-      String t = gymnames[2];
+      String t = roomnames[2];
       for (int i = 2; i > 0; i--) {
-        gymnames[i] = gymnames[i - 1];
+        roomnames[i] = roomnames[i - 1];
       }
-      gymnames[0] = t;
+      roomnames[0] = t;
       s = s + 1;
     }
   }
@@ -75,12 +76,12 @@ class Gymcontroller extends GetxController {
           "${selectedDate.value!.day}/${selectedDate.value!.month}/${selectedDate.value!.year}";
       String textFieldData = textFieldController.text;
       getwork(getWeekNumbergym(selectedDate.value!));
-      print("Date: $formattedDate");
+      print(getwork(getWeekNumbergym(selectedDate.value!)));
       print(getWeekNumbergym(selectedDate.value!));
       if (flag == "1") {
         Get.to(MyGymPage());
       } else {
-        Get.to(GymTable());
+        Get.to(Roomtable());
       }
 
       ScaffoldMessenger.of(context).showSnackBar(
@@ -98,8 +99,8 @@ class Gymcontroller extends GetxController {
   }
 
   getindex() {
-    int index = gymnames.indexOf(authController.name);
-    print(gymnames);
-    mygymwork = gymworks[index];
+    int index = roomnames.indexOf(authController.name);
+    print(roomnames);
+    mygymwork = roomworks[index];
   }
 }

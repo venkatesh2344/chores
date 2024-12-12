@@ -5,11 +5,12 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:my_app/auth.dart';
 import 'package:my_app/gymcontroller.dart';
 import 'package:my_app/homecontroller.dart';
+import 'package:my_app/roomcontroller.dart';
 
-class MyGymPage extends StatelessWidget {
+class MyRoomPage extends StatelessWidget {
   final HomeController homeController = Get.put(HomeController());
-  final Gymcontroller authController = Get.find();
-  MyGymPage({super.key});
+  final Roomcontroller authController = Get.find();
+  MyRoomPage({super.key});
 
   @override
   Widget build(BuildContext context) {
