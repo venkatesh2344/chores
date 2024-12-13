@@ -54,7 +54,7 @@ class HomeController extends GetxController {
       "venkatesh",
       "mohan",
       "vamsi",
-      "chiranjevi",
+      "chiranjivi",
       "Ashok",
       "venkat",
     ];

@@ -7,6 +7,7 @@ import 'package:my_app/auth.dart';
 import 'package:my_app/gymtable.dart';
 import 'package:my_app/mygympage.dart';
 import 'package:my_app/mypage.dart';
+import 'package:my_app/roompage.dart';
 import 'package:my_app/roomtable.dart';
 
 class Roomcontroller extends GetxController {
@@ -14,10 +15,16 @@ class Roomcontroller extends GetxController {
   Rx<DateTime?> selectedDate = Rx<DateTime?>(DateTime.now());
   final AuthController authController = Get.find();
   late String mygymwork = "";
-  late List<String> roomnames = [
+  late List<String> roomnames;
+  late List<String> roomnames1 = [
     "Venkatesh",
-    "venkat",
     "Chiranjivi",
+    "venkat",
+  ];
+  late List<String> roomnames2 = [
+    "vamsi",
+    "mohan",
+    "venkat",
   ];
   late List<String> roomworks = ["Washroom", "cleaning", "Free"];
   // TextField controller
@@ -44,11 +51,21 @@ class Roomcontroller extends GetxController {
   }
 
   getwork(int weeknumber) {
-    roomnames = [
+    roomnames1 = [
       "venkatesh",
+      "chiranjivi",
       "venkat",
-      "Chiranjivi",
     ];
+    roomnames2 = [
+      "vamsi",
+      "Ashok",
+      "mohan",
+    ];
+    if (roomnames2.contains(authController.name)) {
+      roomnames = roomnames2;
+    } else {
+      roomnames = roomnames1;
+    }
     int wd = weeknumber - 50;
     int a = wd % 3;
     int s = 0;
@@ -79,7 +96,7 @@ class Roomcontroller extends GetxController {
       print(getwork(getWeekNumbergym(selectedDate.value!)));
       print(getWeekNumbergym(selectedDate.value!));
       if (flag == "1") {
-        Get.to(MyGymPage());
+        Get.to(MyRoomPage());
       } else {
         Get.to(Roomtable());
       }

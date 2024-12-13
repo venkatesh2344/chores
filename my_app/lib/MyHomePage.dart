@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_app/auth.dart';
@@ -6,19 +8,27 @@ import 'package:my_app/homecontroller.dart';
 import 'package:my_app/mygympage.dart';
 import 'package:my_app/mygymteam.dart';
 import 'package:my_app/myroomteam.dart';
+import 'package:my_app/roomcontroller.dart';
 import 'package:my_app/teamwork.dart';
 
 class MyHomePage extends StatelessWidget {
   final HomeController homeController = Get.put(HomeController());
   final AuthController authController = Get.find();
   final Gymcontroller gymController = Get.put(Gymcontroller());
-
+  final Roomcontroller roomController = Get.put(Roomcontroller());
+  int length1 = 3;
   MyHomePage({super.key});
-
   @override
   Widget build(BuildContext context) {
+    if ([
+      "mohan",
+      "chiranjivi",
+      "venkat",
+    ].contains(authController.name)) {
+      length1 = 2;
+    }
     return DefaultTabController(
-      length: 3, // Number of tabs
+      length: length1, // Number of tabs
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -32,8 +42,9 @@ class MyHomePage extends StatelessWidget {
             tabs: [
               Tab(icon: Icon(Icons.task), text: "Tasks"),
               // Tab(icon: Icon(Icons.people), text: "Team"),
-              Tab(icon: Icon(Icons.fitness_center), text: "Gym"),
+
               Tab(icon: Icon(Icons.house), text: "Room Chores"),
+              Tab(icon: Icon(Icons.fitness_center), text: "Gym"),
             ],
           ),
         ),
@@ -44,10 +55,9 @@ class MyHomePage extends StatelessWidget {
 
             // Tab 2: Team
             // _buildTeamContent(),
-
+            _buildRoomContent(),
             // Tab 3: Gym
             _buildGymContent(),
-            _buildRoomContent(),
           ],
         ),
       ),
@@ -340,8 +350,8 @@ class MyHomePage extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   // Get.to(MyGymPage());
-                  gymController.submitData(Get.context!, "1");
-                  gymController.getindex();
+                  roomController.submitData(Get.context!, "1");
+                  roomController.getindex();
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -374,7 +384,7 @@ class MyHomePage extends StatelessWidget {
                     ),
                     const SizedBox(height: 8.0), // Space between icon and text
                     const Text(
-                      'My Gym Work', // Name below the icon
+                      'My Room Work', // Name below the icon
                       style: TextStyle(
                         fontSize: 16.0, // Font size
                         fontWeight: FontWeight.bold, // Bold text
@@ -419,7 +429,7 @@ class MyHomePage extends StatelessWidget {
                         ),
                       ),
                       const Text(
-                        'Team Gym Work', // Name below the icon
+                        'Team Room Work', // Name below the icon
                         style: TextStyle(
                           fontSize: 16.0, // Font size
                           fontWeight: FontWeight.bold, // Bold text
